@@ -14,7 +14,7 @@ function App() {
       <StoreNavBar></StoreNavBar>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Store/>}/>
+          <Route index element={<Store/>}/> 
           <Route path ="success" element={<PaymentSuccess/>}/>
           <Route path ="failure" element={<PaymentFailure/>}/>
         </Routes>
