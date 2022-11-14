@@ -8,9 +8,12 @@ import PaymentFailure from './pages/PaymentFailure';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
+
+
+
 function App() {
   return (
-    <div className = "Main">
+    <div className = "vw-100 vh-100 storepage-bgimage" >
       <StoreNavBar></StoreNavBar>
       <BrowserRouter>
         <Routes>
