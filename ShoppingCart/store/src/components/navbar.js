@@ -1,11 +1,17 @@
 import { Button, Container, Navbar, Modal, Nav } from "react-bootstrap";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {CartContext} from '../CartContext';
+import InCartProduct from "./InCartProduct";
+
+
 
 function StoreNavBar() {
   const [show, setModalState] = useState(false);
   const closeModal = () => setModalState(false);
   const openModal = () => setModalState(true);
+  const shoppingCart = useContext(CartContext);
+  const totalItemsInCart = shoppingCart.items.reduce((sum, item) => sum + item.quantity, 0); // adding up the quantities of all the items in the item array
 
   return (
     <>
@@ -19,7 +25,7 @@ function StoreNavBar() {
           </Nav>
           <NavbarToggle />
           <Navbar.Collapse className="justify-content-end">
-            <Button onClick={openModal}>0 Items in Cart</Button>
+            <Button onClick={openModal}>{totalItemsInCart} Items in Cart</Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -27,7 +33,23 @@ function StoreNavBar() {
         <Modal.Header closeButton>
           <Modal.Title>Shopping Cart</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Payment Stuff</Modal.Body>
+        <Modal.Body>
+          {totalItemsInCart > 0 ?
+            <>
+              <h5>Items in Cart: </h5>
+              {shoppingCart.items.map((currentItem, index) => 
+              (
+                <InCartProduct id={currentItem.id} quantity={currentItem.quantity} key={index}></InCartProduct>
+              ))}
+             
+              <h3>Total: ${shoppingCart.getTotalCost().toFixed(2)}</h3>
+
+              <Button variant='success'>Buy</Button>
+            </>
+            :
+            <h2 align='center'>No items currently in cart</h2>
+          }
+        </Modal.Body>
       </Modal>
     </>
   );

@@ -6,14 +6,14 @@ const itemsInStock = [
     {
         id: '1',
         name: 'Pokeball',
-        price: 2.00,
+        price: 2.50,
         image: pokeball,
         imgSize: 200
     },
     {
         id: '2',
         name: 'Potion',
-        price: 5.00,
+        price: 5.99,
         image: potion,
         imgSize: 200
     },
@@ -35,6 +35,7 @@ function getItemData(id)
         console.log("Item data does not exist for ID: " + id);
         return undefined;
     }
+    return itemData;
 }
 
 export {itemsInStock, getItemData};
