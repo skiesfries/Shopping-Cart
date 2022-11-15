@@ -4,21 +4,21 @@ import zcrystal from './assets/z crystal.png';
 
 const itemsInStock = [
     {
-        id: '1',
+        id: 'price_1M4CvWDusieQBY9z3S7WuAyc',
         name: 'Pokeball',
         price: 2.50,
         image: pokeball,
         imgSize: 200
     },
     {
-        id: '2',
+        id: 'price_1M4CvwDusieQBY9z0PBXt0hG',
         name: 'Potion',
         price: 5.99,
         image: potion,
         imgSize: 200
     },
     {
-        id: '3',
+        id: 'price_1M4CwEDusieQBY9z4yTT7Mek',
         name: 'Z Crystal',
         price: 50.00,
         image: zcrystal,

@@ -13,6 +13,23 @@ function StoreNavBar() {
   const shoppingCart = useContext(CartContext);
   const totalItemsInCart = shoppingCart.items.reduce((sum, item) => sum + item.quantity, 0); // adding up the quantities of all the items in the item array
 
+  const stripeCheckout = async () => {
+    await fetch('http://localhost:4000/checkout', 
+    {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({items: shoppingCart.items})
+    }).then((response)=> {
+      return response.json();
+    }).then((response)=> {
+      if(response.url) {
+        window.location.assign(response.url);
+      }
+    });
+  }
+
   return (
     <>
       <Navbar expand="sm" bg="dark" variant="dark">
@@ -44,7 +61,7 @@ function StoreNavBar() {
              
               <h3>Total: ${shoppingCart.getTotalCost().toFixed(2)}</h3>
 
-              <Button variant='success'>Buy</Button>
+              <Button variant='success' onClick={stripeCheckout}>Buy</Button>
             </>
             :
             <h2 align='center'>No items currently in cart</h2>
